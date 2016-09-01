@@ -404,18 +404,19 @@ RUN apt-get update -qqy \
 #=================================
 # See gifify options at https://github.com/vvo/gifify#command-line-usage
 # some possible versions: v4.3.2, v5.7.1
-# ENV NODE_VER="v5.7.1" \
-#     NODE_PLATFORM="linux-x64" \
-#     PATH=/usr/local/lib/node/bin:$PATH
-# RUN NODE_FIL="node-${NODE_VER}-${NODE_PLATFORM}" \
-#   && cd /usr/local/lib \
-#   && wget -nv "https://nodejs.org/dist/${NODE_VER}/${NODE_FIL}.tar.xz" \
-#   && tar xf ${NODE_FIL}.tar.xz \
-#   && rm ${NODE_FIL}.tar.* \
-#   && mv ${NODE_FIL} node \
-#   && node --version \
-#   && npm --version \
-#   && npm install -g gifify \
+ENV NODE_VER="v5.7.1" \
+    NODE_PLATFORM="linux-x64" \
+    PATH=/usr/local/lib/node/bin:$PATH
+    RUN NODE_FIL="node-${NODE_VER}-${NODE_PLATFORM}" \
+  && cd /usr/local/lib \
+  && wget -nv "https://nodejs.org/dist/${NODE_VER}/${NODE_FIL}.tar.xz" \
+  && tar xf ${NODE_FIL}.tar.xz \
+  && rm ${NODE_FIL}.tar.* \
+  && mv ${NODE_FIL} node \
+  && node --version \
+  && npm --version \
+  && npm install -g jenkins
+#  && npm install -g gifify \
 #   && gifify --version
 
 #==========================
